@@ -1,9 +1,8 @@
-import shutil
 from pathlib import Path
 
 import pandas as pd
 
-# Script permettant de copier dans un nouveau dossier les images et labels provenant de jours avec au moins 50 images présentes.
+# Fonction permettant de copier dans un nouveau dossier les images et labels provenant de jours avec au moins 50 images présentes.
 
 
 def filter_and_copy_dataset(source_dir: str, dest_dir: str, min_images: int = 50):
@@ -20,7 +19,7 @@ def filter_and_copy_dataset(source_dir: str, dest_dir: str, min_images: int = 50
     # Lister les images du dataset fusionné et extraire les dates
     data = []
     if not images_source.exists():
-        print(f"Erreur : Le dossier {images_source} n'existe pas. Vérifie le chemin.")
+        print(f"Erreur : Le dossier {images_source} n'existe pas. Vérifier le chemin.")
         return
 
     for img_path in images_source.glob("*.*"):
@@ -55,20 +54,20 @@ def filter_and_copy_dataset(source_dir: str, dest_dir: str, min_images: int = 50
     print(f"\nTotal d'images après filtrage : {len(df_filtered)}")
 
     # Copier les fichiers conservés dans le nouveau dossier
-    images_dest.mkdir(parents=True, exist_ok=True)
-    labels_dest.mkdir(parents=True, exist_ok=True)
+    # images_dest.mkdir(parents=True, exist_ok=True)
+    # labels_dest.mkdir(parents=True, exist_ok=True)
 
-    print(f"\nCopie vers {dest_dir} en cours...")
-    for _, row in df_filtered.iterrows():
-        # Copie de l'image
-        shutil.copy2(row["image_path"], images_dest / row["image_name"])
+    # print(f"\nCopie vers {dest_dir} en cours...")
+    # for _, row in df_filtered.iterrows():
+    # Copie de l'image
+    # shutil.copy2(row["image_path"], images_dest / row["image_name"])
 
-        # Copie du label s'il existe
-        if pd.notna(row["label_path"]):
-            label_name = Path(row["label_path"]).name
-            shutil.copy2(row["label_path"], labels_dest / label_name)
+    # Copie du label s'il existe
+    # if pd.notna(row["label_path"]):
+    # label_name = Path(row["label_path"]).name
+    # shutil.copy2(row["label_path"], labels_dest / label_name)
 
-    print("Copie terminée avec succès !")
+    # print("Copie terminée avec succès !")
 
 
 if __name__ == "__main__":

@@ -3,8 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
-# Script permettant de regrouper toutes les images et leurs labels dans un seul dossier.
-# Initialement, elles sont séparés en train / val / test mais pas nécessairement comme souhaité
+# Fonctions permettant de regrouper toutes les images et leurs labels dans un seul dossier.
+# Initialement, elles sont séparés en train / val / test mais pas nécessairement comme souhaité (jours mélangés).
 
 
 def gather_dataset_files(base_dir: str) -> pd.DataFrame:
@@ -91,4 +91,4 @@ if __name__ == "__main__":
     print("\n--------------------------------------------------\n")
 
     # Copie physique des fichiers
-    copy_files_to_new_directory(df_dataset, MERGED_OUTPUT_DIR)
+    # copy_files_to_new_directory(df_dataset, MERGED_OUTPUT_DIR)
